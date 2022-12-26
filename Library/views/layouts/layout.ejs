@@ -13,10 +13,12 @@
     Before
     <br>
 
-    <%- body %>
-        <!-- Sekcja body pliku ejs importuje wszystko to co znajdzie w pliku domyślnym layoutsów, jeżeli ustawiliśmy to na backendzie w pliku index.js-->
+    <%- include('../partials/header.ejs') %>
+        <%- include('../partials/errorMessage.ejs') %>
+            <%- body %>
+                <!-- Sekcja body pliku ejs importuje wszystko to co znajdzie w pliku domyślnym layoutsów, jeżeli ustawiliśmy to na backendzie w pliku index.js-->
 
-        <br> After
+                <br> After
 
 </body>
 
