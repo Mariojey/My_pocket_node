@@ -19,6 +19,7 @@ const bodyParser = require('body-parser');
 const router = require('./routes/route.js')
 const mongo = require('./globalVariables/path.js')
 const author = require('./routes/authors.js')
+const book = require('./routes/books.js')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -38,5 +39,7 @@ db.once('open', () => console.log(`🥭 Connected to database`))
 
 app.use('/', router)
 app.use('/authors', author)
+app.use('/books', book)
+
 
 app.listen(process.env.PORT || 8888)
