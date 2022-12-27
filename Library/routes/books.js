@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const fs = require('fs');
 const Book = require('../moduls/book');
 const Author = require('../moduls/author');
 const author = require('../moduls/author');
@@ -17,7 +18,22 @@ const upload = multer({
 
 //All books, search books
 router.get('/', async(req, res) => {
-    res.send('All Books')
+    //Pobiera z bazy danych wszystkie książki w których tytule znajdzie wpisaną frazę, którą bierze z requesta
+    let query = Book.find()
+    if (req.query.title != null && req.query.title != '') {
+        query = query.regex('title', new RegExp(req.query.title, 'i')) //<- 'i' UpperCase lOWERcASE, whatever
+    }
+    try {
+        const books = await query.exec()
+        res.render('books/index', {
+            books: books,
+            searchOptions: req.query
+        })
+
+    } catch {
+        res.redirect('/')
+    }
+
 })
 
 //New book
@@ -44,11 +60,21 @@ router.post('/', upload.single('cover'), async(req, res) => {
             //res.redirect(`books/${newBook.id}`)
         res.redirect(`books`)
     } catch {
+        if (book.coverImageName != null) {
+            removeBookCover(book.coverImageName)
+        }
         //catch wychwytuje jeżeli jest jakiś error to odsyła na stronę z powrotem wyświetlając komunikat
         renderNewPage(res, book, true)
     }
 
 })
+
+//Usuwa zdjecie okładki książki z public
+function removeBookCover(fileName) {
+    fs.unlink(path.join(uploadPath, fileName), err => {
+        if (err) console.log(err)
+    })
+}
 
 async function renderNewPage(res, book, hasError = false) {
     try {

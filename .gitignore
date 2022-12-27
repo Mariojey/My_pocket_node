@@ -4,3 +4,4 @@ ShowNumber/node_modules
 Library/node_modules
 Library/.env
 Library/GlobalVariables
+Library/public/uploads
