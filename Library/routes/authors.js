@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Author = require('../moduls/author')
+const Author = require('../moduls/author');
 
 //All authors, search authors
 router.get('/', async(req, res) => {
@@ -50,6 +50,22 @@ router.post('/', async(req, res) => {
     //        res.redirect(`authors`)
     //    }
     //})
+})
+
+router.get('/:id', (req, res) => {
+    res.send('Show Auhtor' + req.params.id)
+})
+
+router.get('/:id/edit', (req, res) => {
+        res.send('Edit Author' + req.params.id)
+    })
+    //Trzeba doinstalować odpowiednie bibiloteki dla metod put i delete (method-override)
+router.put('/:id', (req, res) => {
+        res.send('Update Author' + req.params.id)
+    })
+    //Jeżeli chcemy usunąć jakiś record z bazy danych to nigdy nigdy przenigddy w świecie nie używać metody get :))))
+router.delete('/:id', (req, res) => {
+    res.send('Delete Author' + req.params.id)
 })
 
 module.exports = router
