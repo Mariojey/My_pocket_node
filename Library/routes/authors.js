@@ -1,4 +1,5 @@
 const express = require('express');
+const author = require('../moduls/author');
 const router = express.Router();
 const Author = require('../moduls/author');
 
@@ -29,9 +30,7 @@ router.post('/', async(req, res) => {
     })
     try {
         const newAuthor = await author.save()
-            //res.redirect(`authors/${newAuthor.id}`)
-            //^Jeszcze teog nie zaimplementowałem
-        res.redirect(`authors`)
+        res.redirect(`authors/${newAuthor.id}`)
     } catch {
         res.render('authors/new', {
             author: author,
@@ -56,12 +55,27 @@ router.get('/:id', (req, res) => {
     res.send('Show Auhtor' + req.params.id)
 })
 
-router.get('/:id/edit', (req, res) => {
-        res.send('Edit Author' + req.params.id)
+router.get('/:id/edit', async(req, res) => {
+        try {
+            const author = await Author.findById(req.params.id)
+            res.render('authors/edit', { author: author })
+        } catch {
+            res.redirect('/authors')
+        }
     })
     //Trzeba doinstalować odpowiednie bibiloteki dla metod put i delete (method-override)
-router.put('/:id', (req, res) => {
-        res.send('Update Author' + req.params.id)
+router.put('/:id', async(req, res) => {
+        let author
+        try {
+            author = await Author.findById(req.params.id)
+            await author.save()
+            res.redirect(`authors/${author.id}`)
+        } catch {
+            res.render('authors/new', {
+                author: author,
+                errorMessage: 'Error editing author'
+            })
+        }
     })
     //Jeżeli chcemy usunąć jakiś record z bazy danych to nigdy nigdy przenigddy w świecie nie używać metody get :))))
 router.delete('/:id', (req, res) => {
