@@ -8,6 +8,8 @@ const authorSchema = new mongoose.Schema({
         required: true
     }
 })
+
+//Srawdzanie czy autor jest przypisany do jakiejś książki
 authorSchema.pre('remove', function(next) {
     Book.find({ author: this.id }, (err, books) => {
         if (err) {
