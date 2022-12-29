@@ -52,7 +52,7 @@ router.post('/', async(req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    res.send('Show Auhtor' + req.params.id)
+    res.send('Show Author ' + req.params.id)
 })
 
 router.get('/:id/edit', async(req, res) => {
@@ -68,18 +68,35 @@ router.put('/:id', async(req, res) => {
         let author
         try {
             author = await Author.findById(req.params.id)
+            author.name = req.body.name
             await author.save()
-            res.redirect(`authors/${author.id}`)
+            res.redirect(`/authors/${author.id}`)
         } catch {
-            res.render('authors/new', {
-                author: author,
-                errorMessage: 'Error editing author'
-            })
+            if (author == null) {
+                res.redirect('/')
+            } else {
+                res.render('authors/edit', {
+                    author: author,
+                    errorMessage: 'Error editing author'
+                })
+            }
         }
     })
     //Jeżeli chcemy usunąć jakiś record z bazy danych to nigdy nigdy przenigddy w świecie nie używać metody get :))))
-router.delete('/:id', (req, res) => {
-    res.send('Delete Author' + req.params.id)
+router.delete('/:id', async(req, res) => {
+    let author
+    try {
+        author = await Author.findById(req.params.id)
+        author.name = req.body.name
+        await author.remove()
+        res.redirect(`/authors`)
+    } catch {
+        if (author == null) {
+            res.redirect('/')
+        } else {
+            res.redirect(`/authors/${author.id}`)
+        }
+    }
 })
 
 module.exports = router
