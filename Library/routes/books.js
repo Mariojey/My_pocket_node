@@ -101,24 +101,14 @@ function removeBookCover(fileName) {
 }
 
 async function renderNewPage(res, book, hasError = false) {
-    try {
-        const authors = await Author.find({})
-        const params = {
-            authors: authors,
-            book: book
-        }
-        if (hasError) {
-            params.errorMessage = `Error Creating Book`
-        }
-        res.render('books/new', params)
-
-
-    } catch {
-        res.redirect('/books')
-    }
+    renderFormPage(res, book, 'new', hasError)
 }
 
 async function renderEditPage(res, book, hasError = false) {
+    renderFormPage(res, book, 'edit', hasError)
+}
+
+async function renderFormPage(res, book, form, hasError = false) {
     try {
         const authors = await Author.find({})
         const params = {
@@ -128,7 +118,7 @@ async function renderEditPage(res, book, hasError = false) {
         if (hasError) {
             params.errorMessage = `Error Creating Book`
         }
-        res.render('books/edit', params)
+        res.render(`books/${form}`, params)
 
 
     } catch {
