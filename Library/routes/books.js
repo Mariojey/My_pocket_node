@@ -69,6 +69,30 @@ router.post('/', upload.single('cover'), async(req, res) => {
 
 })
 
+
+//Show Book
+router.get('/:id', async(req, res) => {
+    try {
+        //findById znajdzie nam tylko id książki jeżeli chcemy znaleźć coś wiecej musimy użyć populate
+        const book = await Book.findById(req.params.id).populate('author').exec()
+        res.render('books/show', { book: book })
+    } catch {
+        res.redirect(`/`)
+    }
+})
+
+//Edit Book
+router.get('/:id/edit', async(req, res) => {
+    try {
+        const book = await Book.findById(req.params.id)
+        renderEditPage(res, book)
+    } catch {
+        res.redirect('/')
+    }
+
+})
+
+
 //Usuwa zdjecie okładki książki z public
 function removeBookCover(fileName) {
     fs.unlink(path.join(uploadPath, fileName), err => {
@@ -94,5 +118,22 @@ async function renderNewPage(res, book, hasError = false) {
     }
 }
 
+async function renderEditPage(res, book, hasError = false) {
+    try {
+        const authors = await Author.find({})
+        const params = {
+            authors: authors,
+            book: book
+        }
+        if (hasError) {
+            params.errorMessage = `Error Creating Book`
+        }
+        res.render('books/edit', params)
+
+
+    } catch {
+        res.redirect('/books')
+    }
+}
 
 module.exports = router
