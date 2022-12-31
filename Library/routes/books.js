@@ -119,6 +119,21 @@ router.get('/:id/edit', async(req, res) => {
 
 })
 
+//Delete Book
+router.delete('/:id', async(req, res) => {
+    let book
+    try {
+        book = await Book.findById(req.params.id)
+        await book.remove()
+        res.redirect('/books')
+    } catch {
+        if (book != null) {
+            res.render('/books/show', { book: book, errorMessage: 'Could not remove book' })
+        } else {
+            res.redirect('/')
+        }
+    }
+})
 
 //Usuwa zdjecie okładki książki z public
 function removeBookCover(fileName) {
