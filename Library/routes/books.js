@@ -71,22 +71,26 @@ router.post('/', upload.single('cover'), async(req, res) => {
     //Update Book
 router.put('/:id', upload.single('cover'), async(req, res) => {
     let book
-
+    const fileName = req.file != null ? req.file.filename : null
     try {
 
         book = await Book.findById(req.params.id)
         book.title = req.body.title
-        book.author = req.body.authorId
+        book.author = req.body.author
         book.publishDate = new Date(req.body.publishDate)
         book.pageCount = req.body.pageCount
         book.description = req.body.description
         res.redirect(`books/${newBook.id}`)
+        book.coverImageName = fileName
+        await book.save()
+        res.redirect(`/books/${book.id}`)
     } catch {
-        if (book.coverImageName != null) {
-            removeBookCover(book.coverImageName)
+        if (book != null) {
+            renderEditPage(res, book, true)
+        } else {
+            res.redirect('/')
         }
         //catch wychwytuje jeżeli jest jakiś error to odsyła na stronę z powrotem wyświetlając komunikat
-        renderNewPage(res, book, true)
     }
 
 })
@@ -139,7 +143,11 @@ async function renderFormPage(res, book, form, hasError = false) {
             book: book
         }
         if (hasError) {
-            params.errorMessage = `Error Creating Book`
+            if (form === 'edit') {
+                params.errorMessage = `Error Updating Book`
+            } else {
+                params.errorMessage = `Error Creating Book`
+            }
         }
         res.render(`books/${form}`, params)
 
