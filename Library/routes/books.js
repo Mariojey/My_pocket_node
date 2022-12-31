@@ -43,22 +43,44 @@ router.get('/new', async(req, res) => {
     //Dla zapisania pliku coverImage musimy zaistalowac multer npm i multer
     //Create book
 router.post('/', upload.single('cover'), async(req, res) => {
-    const fileName = req.file != null ? req.file.filename : null
-    const book = new Book({
-        title: req.body.title,
-        author: req.body.author,
-        publishDate: new Date(req.body.publishDate),
-        pageCount: req.body.pageCount,
-        coverImageName: fileName,
-        description: req.body.description
-    })
+        const fileName = req.file != null ? req.file.filename : null
+        const book = new Book({
+            title: req.body.title,
+            author: req.body.author,
+            publishDate: new Date(req.body.publishDate),
+            pageCount: req.body.pageCount,
+            coverImageName: fileName,
+            description: req.body.description
+        })
 
+
+        try {
+
+            const newBook = await book.save()
+            res.redirect(`books/${newBook.id}`)
+
+        } catch {
+            if (book.coverImageName != null) {
+                removeBookCover(book.coverImageName)
+            }
+            //catch wychwytuje jeżeli jest jakiś error to odsyła na stronę z powrotem wyświetlając komunikat
+            renderNewPage(res, book, true)
+        }
+
+    })
+    //Update Book
+router.put('/:id', upload.single('cover'), async(req, res) => {
+    let book
 
     try {
 
-        const newBook = await book.save()
-            //res.redirect(`books/${newBook.id}`)
-        res.redirect(`books`)
+        book = await Book.findById(req.params.id)
+        book.title = req.body.title
+        book.author = req.body.authorId
+        book.publishDate = new Date(req.body.publishDate)
+        book.pageCount = req.body.pageCount
+        book.description = req.body.description
+        res.redirect(`books/${newBook.id}`)
     } catch {
         if (book.coverImageName != null) {
             removeBookCover(book.coverImageName)
@@ -68,7 +90,6 @@ router.post('/', upload.single('cover'), async(req, res) => {
     }
 
 })
-
 
 //Show Book
 router.get('/:id', async(req, res) => {
@@ -80,6 +101,8 @@ router.get('/:id', async(req, res) => {
         res.redirect(`/`)
     }
 })
+
+
 
 //Edit Book
 router.get('/:id/edit', async(req, res) => {
