@@ -18,7 +18,27 @@ router.get('/', async(req, res) => {
     }
 })
 
+router.get('/new', async(req, res) => {
+    renderNewPage(res, new Subject())
+})
 
+async function renderNewPage(res, subject, hasError = false) {
+    renderFormPage(res, subject, 'new', hasError)
+}
 
-
+async function renderFormPage(res, subject, form, hasError = false) {
+    try {
+        const params = {
+            subject: subjects
+        }
+        if (hasError) {
+            if (form === 'new') {
+                params.errorMessage = `Error Creating Subject`
+            }
+            res.render(`subjects/${form}`, params)
+        }
+    } catch {
+        res.redirect('/subjects')
+    }
+}
 module.exports = router
