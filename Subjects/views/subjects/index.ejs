@@ -5,13 +5,14 @@
         <input type="text" name="name" value="<%= searchOptions.name %> ">
     </div>
     <br />
-    <div>
-        <% subjects.forEach(subject => { %>
-            <div>
-                <a href="/subjects/<%= subject.id%>">
-                    <% subject.name %>
-                </a>
-            </div>
-            <% }) %>
-    </div>
 </form>
+<br />
+<div>
+    <% subjects.forEach(subject => { %>
+        <div>
+            <a href="/subjects/<%= subject.id%>">
+                <% subject.name %>
+            </a>
+        </div>
+        <% }) %>
+</div>
