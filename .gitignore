@@ -5,3 +5,5 @@ Library/node_modules
 Library/.env
 Library/GlobalVariables
 Library/public/uploads
+Subjects/GlobalVariables
+Subjects/node_modules
