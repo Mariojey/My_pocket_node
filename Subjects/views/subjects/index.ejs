@@ -1,0 +1,17 @@
+<h2>Search Subjects</h2>
+<form action="/subjects" method="GET">
+    <div>
+        <label>Name</label>
+        <input type="text" name="name" value="<%= searchOptions.name %> ">
+    </div>
+    <br />
+    <div>
+        <% subjects.forEach(subject => { %>
+            <div>
+                <a href="/subjects/<%= subject.id%>">
+                    <% subject.name %>
+                </a>
+            </div>
+            <% }) %>
+    </div>
+</form>

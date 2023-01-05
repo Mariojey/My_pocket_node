@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const Subject = require('../models/subject')
 
@@ -12,4 +12,4 @@ router.get('/', async(req, res) => {
     res.render('index', { subjects: subjects })
 })
 
-module.exports = router
+module.exports = router;
