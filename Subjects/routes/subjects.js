@@ -29,14 +29,14 @@ async function renderNewPage(res, subject, hasError = false) {
 async function renderFormPage(res, subject, form, hasError = false) {
     try {
         const params = {
-            subject: subjects
+            subject: subject
         }
         if (hasError) {
             if (form === 'new') {
                 params.errorMessage = `Error Creating Subject`
             }
-            res.render(`subjects/${form}`, params)
         }
+        res.render(`subjects/new`, params)
     } catch {
         res.redirect('/subjects')
     }
