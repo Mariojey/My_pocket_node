@@ -9,6 +9,7 @@ const dbProps = require('./globalVariables/dbProps.js')
 
 //db
 const mongoose = require('mongoose');
+const router = require('./routes/route.js');
 
 
 
@@ -26,4 +27,7 @@ mongoose.connect(dbProps.dbUrl, {
 const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log(`🥭 Connected to database`))
+
+app.use('/', router)
+
 app.listen(appProps.port)
