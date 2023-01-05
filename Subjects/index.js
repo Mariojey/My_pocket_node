@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const expressLayouts = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
 
 //globalVariables
 const appProps = require('./globalVariables/globalVariables.js')
@@ -18,8 +18,7 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
-
+app.use(bodyParser.urlencoded({ extended: false }))
 
 mongoose.connect(dbProps.dbUrl, {
     useNewUrlParser: true
