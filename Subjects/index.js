@@ -12,6 +12,8 @@ const mongoose = require('mongoose');
 const router = require('./routes/route.js');
 
 
+//models
+
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
@@ -28,5 +30,6 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log(`🥭 Connected to database`))
 
 app.use('/', router)
+
 
 app.listen(appProps.port)

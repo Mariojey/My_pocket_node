@@ -1,0 +1,8 @@
+<h2>Subjects</h2>
+<div>
+    <% subjects.forEach(subject => { %>
+        <a href="/subjects/<%= subject.id %> ">
+            <%= subject.name %>
+        </a>
+        <% }) %>
+</div>
