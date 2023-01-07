@@ -22,6 +22,21 @@ router.get('/new', async(req, res) => {
     renderNewPage(res, new Subject())
 })
 
+router.post('/', async(req, res) => {
+    const subject = new Subject({
+        name: req.body.name
+    })
+    try {
+        const newSubject = await subject.save()
+        res.redirect(`subjects/${newSubject.id}`)
+    } catch {
+        res.render('subjects/new', {
+            subject: subject,
+            errorMessage: `Error creating subject`
+        })
+    }
+})
+
 async function renderNewPage(res, subject, hasError = false) {
     renderFormPage(res, subject, 'new', hasError)
 }
