@@ -37,6 +37,17 @@ router.post('/', async(req, res) => {
     }
 })
 
+router.get(':id', (req, res) => {
+    try {
+        const subject = Subject.findById(req.params.id)
+        res.render('subjects/show', {
+            subject: subject
+        })
+    } catch {
+        res.redirect('/')
+    }
+})
+
 async function renderNewPage(res, subject, hasError = false) {
     renderFormPage(res, subject, 'new', hasError)
 }
