@@ -3,12 +3,12 @@ const router = express.Router();
 const Subject = require('../models/subject.js');
 
 router.get('/', async(req, res) => {
-    let query = Subject.find()
+    let searchOptions = {}
     if (req.query.name != null && req.query.name != '') {
-        query = query.regex('name', new RegExp(req.query.name, 'i'))
+        searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
-        const subjects = await query.exec()
+        const subjects = await Subject.find({ searchOptions })
         res.render('subjects/index', {
             subjects: subjects,
             searchOptions: req.query
@@ -19,7 +19,7 @@ router.get('/', async(req, res) => {
 })
 
 router.get('/new', async(req, res) => {
-    renderNewPage(res, new Subject())
+    res.render('subjects/new', { subject: new Subject() })
 })
 
 router.post('/', async(req, res) => {
@@ -37,7 +37,7 @@ router.post('/', async(req, res) => {
     }
 })
 
-router.get(':id', (req, res) => {
+router.get('/:id', (req, res) => {
     try {
         const subject = Subject.findById(req.params.id)
         res.render('subjects/show', {
