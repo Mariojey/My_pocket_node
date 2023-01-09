@@ -4,7 +4,7 @@ exports.getAllPosts = async(req, res, next) => {
     try {
         const posts = await Post.findAll();
 
-        res.send(200).json({ posts })
+        res.status(200).json({ count: posts.length, posts })
     } catch (error) {
         console.log(error);
         next(error);
