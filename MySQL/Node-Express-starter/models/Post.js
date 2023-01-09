@@ -30,6 +30,18 @@ class Post {
 
         return newPost;
     }
+    static findAll() {
+        let query = `SELECT * FROM posts`;
+
+        return db.execute(query)
+    }
+
+    static findById(id) {
+        let query = `SELECT * FROM posts WHERE id LIKE ${id}`;
+
+        return db.execute(query)
+    }
+
 
 }
 
