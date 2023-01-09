@@ -30,6 +30,15 @@ exports.createNewPost = async(req, res, next) => {
 }
 
 exports.getPostById = async(req, res, next) => {
-    res.send('get by Id');
+    try {
+        let postId = req.params.id;
+        let [post, _] = await Post.findById(postId);
+
+        res.status(200).json({ post });
+
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
 
 }
