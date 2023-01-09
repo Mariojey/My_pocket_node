@@ -10,7 +10,7 @@ class Post {
         let date = new Date();
         let yyyy = date.getFullYear();
         let mm = date.getMonth() + 1;
-        let dd = d.getDate();
+        let dd = date.getDate();
 
         let createdAtDate = `${yyyy}-${mm}-${dd}`;
 
@@ -25,7 +25,13 @@ class Post {
             '${this.createdAtDate}'
         )
         `
+
+        const [newPost, _] = await db.execute(query);
+
+        return newPost;
     }
 
-    static findAll()
 }
+
+
+module.exports = Post;
