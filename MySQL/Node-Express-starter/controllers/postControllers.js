@@ -1,17 +1,31 @@
 const Post = require('../models/Post')
 
 exports.getAllPosts = async(req, res, next) => {
-    res.send('Get all posts');
+    try {
+        const posts = await Post.findAll();
+
+        res.send(200).json({ posts })
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
 }
 
 exports.createNewPost = async(req, res, next) => {
-    let { title, body } = req.body;
-    let post = new Post(title, body);
+    try {
 
-    post = await post.save();
+        let { title, body } = req.body;
+        let post = new Post(title, body);
 
-    console.log(post);
-    res.send('Create New Post');
+        post = await post.save();
+
+        console.log(post);
+        res.status(200).json({ message: "Post created" });
+
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
 
 }
 
