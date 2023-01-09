@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
@@ -6,5 +7,13 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
 });
+
+let query = "SELECT * FROM posts";
+
+pool.execute(query, (err, result) => {
+    if (err) throw err;
+
+    console.log(result);
+})
 
 module.exports = pool.promise()
