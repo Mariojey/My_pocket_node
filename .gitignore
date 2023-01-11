@@ -8,3 +8,5 @@ Library/public/uploads
 Subjects/GlobalVariables
 Subjects/node_modules
 MySQL/Node-Express-starter/node_modules
+Users/node_modules
+Users/.env
