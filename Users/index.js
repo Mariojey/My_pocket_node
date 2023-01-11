@@ -7,10 +7,15 @@ const bodyParser = require('body-parser');
 //props
 const PORT = process.env.PORT || 3000;
 
+//routes
+const userRoutes = require('./routes/userRoutes')
+
 //encode
 app.use(bodyParser.urlencoded({
     extended: false
 }))
+
+app.use('/users', userRoutes)
 
 app.use((err, req, res, next) => {
     console.log(err.stack);
