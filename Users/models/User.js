@@ -25,7 +25,7 @@ class User {
             '${this.username}',
             '${this.password}',
             '${this.name}',
-            '${this.created_at}'
+            '${created_at}'
         )
         `
 

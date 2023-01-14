@@ -13,9 +13,11 @@ exports.getAllUsers = async(req, res, next) => {
 
 exports.createNewUser = async(req, res, next) => {
     try {
-        let { username, password, name } = req.body;
+        let username = req.body.username;
+        let password = req.body.password;
+        let name = req.body.name;
+        console.log(username, password, name);
         let user = new User(username, password, name);
-
         user = await user.save();
 
         console.log(user);

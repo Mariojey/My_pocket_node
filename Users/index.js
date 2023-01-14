@@ -14,7 +14,7 @@ const userRoutes = require('./routes/userRoutes')
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-
+app.use(bodyParser.json())
 app.use('/users', userRoutes)
 
 app.use((err, req, res, next) => {
