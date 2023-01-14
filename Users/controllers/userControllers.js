@@ -17,6 +17,7 @@ exports.createNewUser = async(req, res, next) => {
         let username = req.body.username;
         let password = req.body.password;
         let name = req.body.name;
+        console.log(username, password, name);
         const salt = 10
         const hashPassword = await bcrypt.hash(password, salt)
         let user = new User(username, hashPassword, name);
