@@ -9,10 +9,23 @@ function App() {
   const resultDiv = document.getElementById('resultDiv')
 
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    name: ""
+    username: "Will",
+    password: "Alyss123",
+    name: "Will Treaty"
   })
+
+  function handleFormUpdate(event) {
+    const target = event.currentTarget;
+
+    if (target.name) {
+      setFormData(prevState => {
+        return({
+          ...prevState,
+          [target.name]: target.value
+        })
+      })
+    }
+  }
 
   function sendDataToBackend(item){
     let result
@@ -46,9 +59,9 @@ function getDataToSend(){
   return (
     <div className="App">
       <form>
-        <input type="text" id="username"     value={formData.username}  className="usernameField" placeholder="Podaj nazwę użytkownika... "/>
-        <input type="password" id="password" value={formData.password}  className="passwordField" placeholder="Wpisz hasło..."/>
-        <input type="text" id="name"         value={formData.name}  className="nameField" placeholder="Podaj imie... "/>
+        <input  onChange={handleFormUpdate} type="text" id="username"     value={formData.username}  className="usernameField" placeholder="Podaj nazwę użytkownika... "/>
+        <input  onChange={handleFormUpdate} type="password" id="password" value={formData.password}  className="passwordField" placeholder="Wpisz hasło..."/>
+        <input  onChange={handleFormUpdate} type="text" id="name"         value={formData.name}  className="nameField" placeholder="Podaj imie... "/>
         <button type="submit" id="btn" onClick={getDataToSend}>Stwórz</button>
       </form>
       <div id="resultDiv">xD</div>
