@@ -9,9 +9,9 @@ function App() {
   const resultDiv = document.getElementById('resultDiv')
 
   const [formData, setFormData] = useState({
-    username: "Will",
-    password: "Alyss123",
-    name: "Will Treaty"
+    username: "",
+    password: "",
+    name: ""
   })
 
   function handleFormUpdate(event) {
@@ -27,42 +27,41 @@ function App() {
     }
   }
 
-  function sendDataToBackend(item){
+  function sendDataToBackend(){
+    console.log("Hi");
     let result
-    fetch("https://127.0.0.1:3000/users/", {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(item)
-    }).then(res => res.json())
-    .then(res => {
-        result = res.body;
-        resultDiv.textContent = result;
-    })
+    if (formData.username === "" || formData.password === "" || formData.name === "") {
+      resultDiv.textContent = "Wpisz prawidłowe dane";
+    }else{
+     fetch("https://127.0.0.1:3000/users/", {
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(formData)
+      }).then(res => res.json())
+      .then(res => {
+          if (res.status === "OK") {
+            console.log("OK");
+            resultDiv.textContent = "OK"
+          }else{
+            console.log("Not OK");
+          }
+      })
+
+    }
+    console.log(formData);
 }
 
-function getDataToSend(){
-  if (formData.username == "" || formData.password == "" || formData.name == "") {
-    resultDiv.textContent = "Wpisz prawidłowe dane";
-  }
-  const request = {
-    username: formData.username,
-    password: formData.password,
-    name: formData.name
-  }
-    sendDataToBackend(request)
-    resultDiv.textContent = "yes"
-}
 
   return (
     <div className="App">
       <form>
-        <input  onChange={handleFormUpdate} type="text" id="username"     value={formData.username}  className="usernameField" placeholder="Podaj nazwę użytkownika... "/>
-        <input  onChange={handleFormUpdate} type="password" id="password" value={formData.password}  className="passwordField" placeholder="Wpisz hasło..."/>
-        <input  onChange={handleFormUpdate} type="text" id="name"         value={formData.name}  className="nameField" placeholder="Podaj imie... "/>
-        <button type="submit" id="btn" onClick={getDataToSend}>Stwórz</button>
+        <input  onChange={handleFormUpdate} name="username" type="text" id="username"     value={formData.username}  className="usernameField" placeholder="Podaj nazwę użytkownika... "/>
+        <input  onChange={handleFormUpdate} name="password" type="password" id="password" value={formData.password}  className="passwordField" placeholder="Wpisz hasło..."/>
+        <input  onChange={handleFormUpdate} name="name" type="text" id="name"         value={formData.name}  className="nameField" placeholder="Podaj imie... "/>
+        <button type="submit" id="btn" onClick={sendDataToBackend}>Stwórz</button>
       </form>
       <div id="resultDiv">xD</div>
     </div>
