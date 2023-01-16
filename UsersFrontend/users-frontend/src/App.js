@@ -11,21 +11,21 @@ function App() {
   const [backendData, setBackendData] = useState([{}])
 
   useEffect(() => {
-    fetch("/users").then(
+    fetch("http://127.0.0.1:3000/users").then(
       res => res.json()
     ).then(
-      data => {
-        setBackendData(data)
+      users => {
+        setBackendData(users)
       }
     )
   }, [])
-
+  console.log(backendData);
 
   //CREATE
   const [formData, setFormData] = useState({
-    username: "Erak",
-    password: "WilczyWicher",
-    name: "Erak Fallkrok"
+    username: "",
+    password: "",
+    name: ""
   })
 
   function handleFormUpdate(event) {
@@ -83,9 +83,9 @@ function App() {
         {(typeof backendData.users === 'undefined') ? (
           <p>Loading ...</p>
         ): (
-          backendData.users.map((user, key) => {
-            <p key={key}>{user.username}</p>
-          })
+          backendData.users.map((user, i) => (
+            <p key={i}>{user}</p>
+          ))
         )}
       </div>
     </div>
