@@ -33,13 +33,9 @@ function getDataFromBackend() {
         .then(res => {
             console.log(JSON.parse(res.body));
             if (res.status == "OK") {
-                const p = document.createElement('p');
-                p.textContent = 'OK'
-                userList.appendChild(p);
+                return res.body
             } else {
-                const p = document.createElement('p');
-                p.textContent = 'NOT OK'
-                userList.appendChild(p);
+                console.log(`That's not working`);
             }
         })
 }

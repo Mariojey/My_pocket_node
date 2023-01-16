@@ -1,13 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
 //import './components/createUser';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 
 function App() {
 
   const resultDiv = document.getElementById('resultDiv')
 
+  const [backendData, setBackendData] = useState([{}])
+
+  useEffect(() => {
+    fetch("/users").then(
+      res => res.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
+
+
+  //CREATE
   const [formData, setFormData] = useState({
     username: "Erak",
     password: "WilczyWicher",
@@ -64,6 +78,16 @@ function App() {
         <button type="submit" id="btn" onClick={sendDataToBackend}>Stwórz</button>
       </form>
       <div id="resultDiv">xD</div>
+
+      <div className='users'>
+        {(typeof backendData.users === 'undefined') ? (
+          <p>Loading ...</p>
+        ): (
+          backendData.users.map((user, key) => {
+            <p key={key}>{user.username}</p>
+          })
+        )}
+      </div>
     </div>
   );
 }
