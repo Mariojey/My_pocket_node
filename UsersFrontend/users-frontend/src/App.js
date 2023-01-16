@@ -9,9 +9,9 @@ function App() {
   const resultDiv = document.getElementById('resultDiv')
 
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    name: ""
+    username: "Erak",
+    password: "WilczyWicher",
+    name: "Erak Fallkrok"
   })
 
   function handleFormUpdate(event) {

@@ -3,7 +3,7 @@ const password = document.getElementById('password');
 const name = document.getElementById('name');
 const btn = document.getElementById('btn');
 const resultDiv = document.getElementById('resultDiv');
-
+const userList = document.getElementById('users');
 
 function sendDataToBackend(item) {
     let result
@@ -21,6 +21,28 @@ function sendDataToBackend(item) {
         })
 }
 
+function getDataFromBackend() {
+    let result
+    fetch("http://127.0.0.1:3000/users", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "GET",
+        }).then(res => res.json())
+        .then(res => {
+            console.log(JSON.parse(res.body));
+            if (res.status == "OK") {
+                const p = document.createElement('p');
+                p.textContent = 'OK'
+                userList.appendChild(p);
+            } else {
+                const p = document.createElement('p');
+                p.textContent = 'NOT OK'
+                userList.appendChild(p);
+            }
+        })
+}
 
 
 btn.addEventListener('click', () => {
@@ -32,4 +54,8 @@ btn.addEventListener('click', () => {
         //console.log(request);
     sendDataToBackend(request)
 
+})
+
+userList.addEventListener('load', () => {
+    getDataFromBackend()
 })
