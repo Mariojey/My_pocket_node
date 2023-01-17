@@ -38,6 +38,12 @@ class User {
 
         return db.execute(query)
     }
+
+    static findUserById(param) {
+        let query = `SELECT * FROM users WHERE users.id = ${param}`;
+
+        return db.execute(query)
+    }
 }
 
 module.exports = User
