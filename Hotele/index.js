@@ -13,6 +13,8 @@ const clientRouter = require('./routes/clientRouter')
 const countryRouter = require('./routes/countryRouter')
 const cityRouter = require('./routes/cityRouter')
 const parkingRouter = require('./routes/parkingRouter')
+const roomRouter = require('./routes/roomRouter')
+const reservationRouter = require('./routes/reservationRouter')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -26,6 +28,8 @@ app.use('/clients', clientRouter)
 app.use('/countries', countryRouter)
 app.use('/cities', cityRouter)
 app.use('/parkings', parkingRouter)
+app.use('/rooms', roomRouter)
+app.use('/reservations', reservationRouter)
 
 
 app.use((err, req, res, next) => {
