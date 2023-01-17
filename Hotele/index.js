@@ -11,6 +11,7 @@ const PORT = process.env.PORT;
 const hotelRouter = require('./routes/hotelRouter')
 const clientRouter = require('./routes/clientRouter')
 const countryRouter = require('./routes/countryRouter')
+const cityRouter = require('./routes/cityRouter')
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 app.use('/hotels', hotelRouter)
 app.use('/clients', clientRouter)
 app.use('/countries', countryRouter)
+app.use('/cities', cityRouter)
 
 
 app.use((err, req, res, next) => {

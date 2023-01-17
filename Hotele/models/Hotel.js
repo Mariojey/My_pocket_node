@@ -13,7 +13,7 @@ class Hotel {
     }
 
     static findAll() {
-        let query = `SELECT * FROM hotele`;
+        let query = `SELECT * FROM hotele.hotele`;
 
         return db.execute(query)
     }
