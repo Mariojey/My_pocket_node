@@ -23,3 +23,18 @@ exports.getParkingById = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.createParking = async(req, res, next) => {
+    try {
+        let hotel_id = req.body.hotel_id;
+        let numer = req.body.numer;
+
+        let parking = new Parking(hotel_id, numer);
+        parking = await parking.save();
+
+        res.status(200).json({ message: "Parking Created", parking })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}

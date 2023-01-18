@@ -17,6 +17,23 @@ class Parking {
 
         return db.execute(query)
     }
+
+    async save() {
+        let query = `
+        INSERT INTO hotele.parking(
+            id_hotel,
+            numer
+        ) VALUES (
+            ${this.hotel_id},
+            ${this.numer}
+        )
+        `
+
+        const [newParking, _] = await db.execute(query);
+
+        return newParking;
+
+    }
 }
 
 module.exports = Parking

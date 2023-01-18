@@ -4,6 +4,8 @@ const parkingController = require('../controllers/parkingController')
 
 router.route('/').get(
     parkingController.getAllParkings
+).post(
+    parkingController.createParking
 )
 
 router.route('/:id').get(

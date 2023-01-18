@@ -17,6 +17,23 @@ class City {
 
         return db.execute(query)
     }
+
+    async save() {
+
+        let query = `
+        INSERT INTO hotele.miasta(
+            nazwa_miasta,
+            kod_miasta
+        ) VALUES (
+            '${this.name}',
+            '${this.code}'
+        )
+        `
+
+        const [newCity, _] = await db.execute(query)
+
+        return newCity;
+    }
 }
 
 module.exports = City

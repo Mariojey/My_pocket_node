@@ -22,3 +22,18 @@ exports.getCityById = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.createCity = async(req, res, next) => {
+    try {
+        let name = req.body.name;
+        let code = req.body.code;
+
+        let city = new City(name, code)
+        city = await city.save()
+
+        res.status(200).json({ message: "City Created", city })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
