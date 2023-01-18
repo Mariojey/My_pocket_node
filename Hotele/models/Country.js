@@ -17,6 +17,23 @@ class Country {
 
         return db.execute(query)
     }
+
+    async save() {
+
+        let query = `
+        INSERT INTO hotele.kraje(
+            nazwa_kraju,
+            kod_kraju
+        ) VALUES (
+            '${this.name}',
+            '${this.code}'
+        )
+        `
+
+        const [newCountry, _] = await db.execute(query);
+
+        return newCountry;
+    }
 }
 
 module.exports = Country

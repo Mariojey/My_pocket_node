@@ -4,6 +4,8 @@ const countryController = require('../controllers/countryController')
 
 router.route('/').get(
     countryController.getAllCountries
+).post(
+    countryController.createCountry
 )
 router.route('/:id').get(
     countryController.getAllCountriesById

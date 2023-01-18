@@ -22,3 +22,18 @@ exports.getAllCountriesById = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.createCountry = async(req, res, next) => {
+    try {
+        let name = req.body.name;
+        let code = req.body.code;
+
+        let country = new Country(name, code);
+        country = await country.save();
+
+        res.status(200).json({ message: "Country Created", country })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
