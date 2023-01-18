@@ -30,10 +30,10 @@ class Room {
             pietro,
             ludzie
         ) VALUES (
-            '${this.hotel_id}',
-            '${this.room_number}',
-            '${this.floor}',
-            '${this.count_of_people}'
+            ${this.hotel_id},
+            ${this.room_number},
+            ${this.floor},
+            ${this.count_of_people}
         )
         `
 
