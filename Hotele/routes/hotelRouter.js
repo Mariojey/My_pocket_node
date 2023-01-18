@@ -7,9 +7,9 @@ router.route('/').get(
     )
     /*.post(
         console.log('.')
-    )
-    router.route('/:id').get(
-        console.log('.')
-    )
-    */
+    )*/
+router.route('/:id').get(
+    hotelController.getHotelById
+)
+
 module.exports = router

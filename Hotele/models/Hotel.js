@@ -17,6 +17,12 @@ class Hotel {
 
         return db.execute(query)
     }
+
+    static findHotelById(props) {
+        let query = `SELECT * FROM hotele.hotele WHERE hotele.id_hotel = ${props}`
+
+        return db.execute(query)
+    }
 }
 
 module.exports = Hotel
