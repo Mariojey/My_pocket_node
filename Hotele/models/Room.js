@@ -21,6 +21,26 @@ class Room {
 
         return db.execute(query)
     }
+
+    async save() {
+        let query = `
+        INSERT INTO hotele.pokoje(
+            id_hotel,
+            nr_pokoju,
+            pietro,
+            ludzie
+        ) VALUES (
+            '${this.hotel_id}',
+            '${this.room_number}',
+            '${this.floor}',
+            '${this.count_of_people}'
+        )
+        `
+
+        const [newRoom, _] = await db.execute(query);
+
+        return newRoom;
+    }
 }
 
 module.exports = Room
