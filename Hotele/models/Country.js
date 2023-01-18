@@ -11,6 +11,12 @@ class Country {
 
         return db.execute(query)
     }
+
+    static findCountryById(props) {
+        let query = `SELECT * FROM hotele.kraje WHERE kraje.id_kraju = ${props}`
+
+        return db.execute(query)
+    }
 }
 
 module.exports = Country
