@@ -6,4 +6,7 @@ router.route('/').get(
     parkingController.getAllParkings
 )
 
+router.route('/:id').get(
+    parkingController.getParkingById
+)
 module.exports = router

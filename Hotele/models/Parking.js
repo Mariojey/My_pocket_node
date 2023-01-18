@@ -11,6 +11,12 @@ class Parking {
 
         return db.execute(query)
     }
+
+    static findParkingById(props) {
+        let query = `SELECT * FROM hotele.parking WHERE parking.id_parking = ${props}`
+
+        return db.execute(query)
+    }
 }
 
 module.exports = Parking
