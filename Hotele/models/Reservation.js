@@ -15,6 +15,12 @@ class Reservation {
 
         return db.execute(query)
     }
+
+    static findReservationById(props) {
+        let query = `SELECT * FROM hotele.rezerwacje WHERE rezerwacje.id_rezerwacji = ${props}`
+
+        return db.execute(query)
+    }
 }
 
 module.exports = Reservation

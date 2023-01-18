@@ -6,5 +6,7 @@ router.route('/').get(
     reservationController.getAllReservations
 
 )
-
+router.route('/:id').get(
+    reservationController.getReservationById
+)
 module.exports = router
