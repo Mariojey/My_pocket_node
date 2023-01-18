@@ -23,6 +23,34 @@ class Hotel {
 
         return db.execute(query)
     }
+
+    async save() {
+        let query = `
+        INSERT INTO hotele.hotele(
+            nazwa,
+            id_kraj,
+            id_miasto,
+            adres,
+            gwiazdki,
+            telefon,
+            email,
+            www
+        ) VALUES (
+            '${this.name}',
+            ${this.country_id},
+            ${this.city_id},
+            '${this.adress}',
+            ${this.stars},
+            '${this.phonenumber}',
+            '${this.email}',
+            '${this.domain}'
+        )
+        `
+
+        const [newHotel, _] = await db.execute(query);
+
+        return newHotel;
+    }
 }
 
 module.exports = Hotel

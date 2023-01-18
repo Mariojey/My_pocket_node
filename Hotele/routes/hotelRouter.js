@@ -5,9 +5,9 @@ const hotelController = require('../controllers/hotelController')
 router.route('/').get(
         hotelController.getAllHotels
     )
-    /*.post(
-        console.log('.')
-    )*/
+    .post(
+        hotelController.createHotel
+    )
 router.route('/:id').get(
     hotelController.getHotelById
 )

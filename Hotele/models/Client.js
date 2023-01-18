@@ -22,6 +22,32 @@ class Client {
 
         return db.execute(query)
     }
+
+    async save() {
+        let query = `
+        INSERT INTO hotele.klienci(
+            imie,
+            nazwisko,
+            id_kraju,
+            id_miasto,
+            adres,
+            licznik,
+            nr_dokumentacji
+        ) VALUES (
+            '${this.name}',
+            '${this.surname}',
+            ${this.country_id},
+            ${this.city_id},
+            '${this.adress}',
+            ${this.count},
+            '${this.documentation_id}'
+        )
+        `
+
+        const [newClient, _] = await db.execute(query);
+
+        return newClient;
+    }
 }
 
 module.exports = Client
