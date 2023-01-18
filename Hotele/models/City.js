@@ -11,6 +11,12 @@ class City {
 
         return db.execute(query)
     }
+
+    static findCityById(props) {
+        let query = `SELECT * FROM hotele.miasta WHERE miasta.id_miasta = ${props}`;
+
+        return db.execute(query)
+    }
 }
 
 module.exports = City
