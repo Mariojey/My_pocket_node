@@ -6,5 +6,8 @@ const { route } = require('./hotelRouter');
 router.route('/').get(
     roomController.getAllRooms
 )
+router.route('/:id').get(
+    roomController.getRoomById
+)
 
 module.exports = router

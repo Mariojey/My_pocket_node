@@ -9,7 +9,15 @@ class Room {
     }
 
     static findAll() {
+
         let query = `SELECT * FROM hotele.pokoje`;
+
+        return db.execute(query)
+    }
+
+    static findRoomById(props) {
+
+        let query = `SELECT * FROM hotele.pokoje WHERE pokoje.id_pokoju = ${props}`;
 
         return db.execute(query)
     }
