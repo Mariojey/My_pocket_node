@@ -21,6 +21,32 @@ class Reservation {
 
         return db.execute(query)
     }
+
+    async save() {
+
+        let query = `
+        INSERT INTO hotele.rezerwacje(
+            id_klient,
+            data_start_rezerwacji,
+            data_koniec_rezerwacji,
+            id_pokoju,
+            id_parking,
+            zrealizowane
+        ) VALUES (
+            ${this.client_id},
+            ${this.start_date},
+            ${this.end_date},
+            ${this.room_id},
+            ${this.parking_id},
+            ${this.is_done}
+        )
+        `
+
+        const [newReservation, _] = await db.execute(query);
+
+        return newReservation;
+
+    }
 }
 
 module.exports = Reservation

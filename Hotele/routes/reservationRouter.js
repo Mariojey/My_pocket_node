@@ -5,6 +5,8 @@ const reservationController = require('../controllers/reservationController')
 router.route('/').get(
     reservationController.getAllReservations
 
+).post(
+    reservationController.createReservation
 )
 router.route('/:id').get(
     reservationController.getReservationById
