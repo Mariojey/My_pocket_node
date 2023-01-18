@@ -16,6 +16,12 @@ class Client {
 
         return db.execute(query)
     }
+
+    static findClientById(props) {
+        let query = `SELECT * FROM hotele.klienci WHERE klienci.id_klient = ${props}`;
+
+        return db.execute(query)
+    }
 }
 
 module.exports = Client
