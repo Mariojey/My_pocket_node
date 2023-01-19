@@ -22,6 +22,12 @@ class Room {
         return db.execute(query)
     }
 
+    static findRoomByHotel(props) {
+        let query = `SELECT * FROM hotele.pokoje WHERE pokoje.id_hotel = ${props}`;
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.pokoje(

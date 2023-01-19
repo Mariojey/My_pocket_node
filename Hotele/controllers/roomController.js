@@ -23,6 +23,18 @@ exports.getRoomById = async(req, res, next) => {
     }
 }
 
+exports.getRoomByHotel = async(req, res, next) => {
+    try {
+        let hotel_id = req.params.id
+        const rooms = await Room.findRoomByHotel(hotel_id)
+
+        res.status(200).json({ rooms })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createRoom = async(req, res, next) => {
     try {
         let hotel_id = req.body.hotel_id;

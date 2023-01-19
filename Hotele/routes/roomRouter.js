@@ -7,6 +7,11 @@ router.route('/').get(
 ).post(
     roomController.createRoom
 )
+
+router.route('/hotel/:id').get(
+    roomController.getRoomByHotel
+)
+
 router.route('/:id').get(
     roomController.getRoomById
 )
