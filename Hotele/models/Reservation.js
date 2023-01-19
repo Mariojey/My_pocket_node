@@ -22,6 +22,12 @@ class Reservation {
         return db.execute(query)
     }
 
+    static findReservationByClient(props) {
+        let query = `SELECT * FROM hotele.rezerwacje WHERE rezerwacje.id_klient = ${props}`
+
+        return db.execute(query)
+    }
+
     async save() {
 
         let query = `

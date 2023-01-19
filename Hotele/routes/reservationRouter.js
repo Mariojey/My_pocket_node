@@ -8,6 +8,11 @@ router.route('/').get(
 ).post(
     reservationController.createReservation
 )
+
+router.route('/client/:client').get(
+    reservationController.getReservationByClient
+)
+
 router.route('/:id').get(
     reservationController.getReservationById
 )

@@ -23,6 +23,18 @@ exports.getReservationById = async(req, res, next) => {
     }
 }
 
+exports.getReservationByClient = async(req, res, next) => {
+    try {
+        let client_id = req.params.client;
+        const reservations = await Reservation.findReservationByClient(client_id)
+
+        res.status(200).json({ reservations })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createReservation = async(req, res, next) => {
     try {
         let client_id = req.body.client_id;
