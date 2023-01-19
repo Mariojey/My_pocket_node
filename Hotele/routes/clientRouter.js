@@ -7,6 +7,11 @@ router.route('/').get(
 ).post(
     clientController.createClient
 )
+
+router.route('/country/:id').get(
+    clientController.getClientByCountry
+)
+
 router.route('/:id').get(
     clientController.getClientById
 )
