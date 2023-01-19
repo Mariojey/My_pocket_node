@@ -35,6 +35,30 @@ exports.getHotelByCountry = async(req, res, next) => {
     }
 }
 
+exports.getHotelByCity = async(req, res, next) => {
+    try {
+        let city_id = req.params.id
+        const hotels = await Hotel.findHotelByCity(city_id);
+
+        res.status(200).json({ hotels })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
+exports.getHotelByStars = async(req, res, next) => {
+    try {
+        let stars = req.params.id
+        const hotels = await Hotel.findHotelByStars(stars)
+
+        res.status(200).json({ hotels })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createHotel = async(req, res, next) => {
     try {
         let name = req.body.name;

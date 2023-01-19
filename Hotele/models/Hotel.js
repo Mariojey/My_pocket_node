@@ -30,6 +30,18 @@ class Hotel {
         return db.execute(query)
     }
 
+    static findHotelByCity(props) {
+        let query = `SELECT * FROM hotele.hotele WHERE hotele.id_miasto = ${props}`
+
+        return db.execute(query)
+    }
+
+    static findHotelByStars(props) {
+        let query = `SELECT * FROM hotele.hotele WHERE hotele.gwiazdki = ${props}`
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.hotele(

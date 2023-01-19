@@ -11,6 +11,15 @@ router.route('/').get(
 router.route('/country/:id').get(
     hotelController.getHotelByCountry
 )
+
+router.route('/city/:id').get(
+    hotelController.getHotelByCity
+)
+
+router.route('/stars/:id').get(
+    hotelController.getHotelByStars
+)
+
 router.route('/:id').get(
     hotelController.getHotelById
 )
