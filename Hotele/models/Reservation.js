@@ -28,6 +28,18 @@ class Reservation {
         return db.execute(query)
     }
 
+    static orderReservationByStartData() {
+        let query = `SELECT * FROM hotele.rezerwacje ORDER BY data_start_rezerwacji DESC`
+
+        return db.execute(query)
+    }
+
+    static orderReservationByEndData() {
+        let query = `SELECT * FROM hotele.rezerwacje ORDER BY data_koniec_rezerwacji DESC`
+
+        return db.execute(query)
+    }
+
     async save() {
 
         let query = `
