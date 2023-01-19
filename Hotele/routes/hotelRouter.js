@@ -13,9 +13,12 @@ router.route('/country/:id').get(
 )
 
 router.route('/city/:id').get(
-    hotelController.getHotelByCity
+        hotelController.getHotelByCity
+    )
+    //ASC or DESC
+router.route('/stars').get(
+    hotelController.getHotelSortedByStars
 )
-
 router.route('/stars/:id').get(
     hotelController.getHotelByStars
 )

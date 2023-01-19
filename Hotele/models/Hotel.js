@@ -42,6 +42,12 @@ class Hotel {
         return db.execute(query)
     }
 
+    static orderHotelByStars() {
+        let query = `SELECT * FROM hotele.hotele ORDER BY hotele.gwiazdki DESC`
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.hotele(

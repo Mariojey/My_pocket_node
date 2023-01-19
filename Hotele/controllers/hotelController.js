@@ -58,7 +58,16 @@ exports.getHotelByStars = async(req, res, next) => {
         next(error)
     }
 }
+exports.getHotelSortedByStars = async(req, res, next) => {
+    try {
+        const hotels = await Hotel.orderHotelByStars()
 
+        res.status(200).json({ hotels })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
 exports.createHotel = async(req, res, next) => {
     try {
         let name = req.body.name;
