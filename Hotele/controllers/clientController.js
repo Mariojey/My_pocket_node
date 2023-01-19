@@ -36,6 +36,19 @@ exports.getClientByCountry = async(req, res, next) => {
     }
 }
 
+exports.getClientByCity = async(req, res, next) => {
+    try {
+        let city_id = req.params.id;
+
+        const clients = await Client.findClientByCity(city_id)
+
+        res.status(200).json({ clients })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createClient = async(req, res, next) => {
     try {
         let name = req.body.name;

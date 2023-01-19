@@ -18,6 +18,12 @@ class Parking {
         return db.execute(query)
     }
 
+    static findParkingByHotel(props) {
+        let query = `SELECT * FROM hotele.parking WHERE parking.id_hotel = ${props}`
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.parking(

@@ -11,7 +11,9 @@ router.route('/').get(
 router.route('/country/:id').get(
     clientController.getClientByCountry
 )
-
+router.route('/city/:id').get(
+    clientController.getClientByCity
+)
 router.route('/:id').get(
     clientController.getClientById
 )

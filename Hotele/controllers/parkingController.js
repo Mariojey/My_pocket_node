@@ -24,6 +24,19 @@ exports.getParkingById = async(req, res, next) => {
     }
 }
 
+exports.getParkingByHotel = async(req, res, next) => {
+    try {
+        let hotel_id = req.params.id;
+
+        const parking = await Parking.findParkingByHotel(hotel_id)
+
+        res.status(200).json({ parking })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createParking = async(req, res, next) => {
     try {
         let hotel_id = req.body.hotel_id;

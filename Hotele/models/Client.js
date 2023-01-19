@@ -29,6 +29,12 @@ class Client {
         return db.execute(query)
     }
 
+    static findClientByCity(props) {
+        let query = `SELECT * FROM hotele.klienci WHERE klienci.id_miasto = ${props}`;
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.klienci(

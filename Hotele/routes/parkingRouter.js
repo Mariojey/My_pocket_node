@@ -7,7 +7,9 @@ router.route('/').get(
 ).post(
     parkingController.createParking
 )
-
+router.route('/hotel/:id').get(
+    parkingController.getParkingByHotel
+)
 router.route('/:id').get(
     parkingController.getParkingById
 )
