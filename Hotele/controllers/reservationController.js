@@ -46,6 +46,17 @@ exports.getReservationsSortedByStartData = async(req, res, next) => {
     }
 }
 
+exports.getReservtionsSortedByEndData = async(req, res, next) => {
+    try {
+        const reservations = await Reservation.orderReservationByEndData()
+
+        res.status(200).json({ reservations })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createReservation = async(req, res, next) => {
     try {
         let client_id = req.body.client_id;

@@ -16,7 +16,9 @@ router.route('/client/:client').get(
 router.route('/sort/start').get(
     reservationController.getReservationsSortedByStartData
 )
-
+router.route('/sort/end').get(
+    reservationController.getReservtionsSortedByEndData
+)
 router.route('/:id').get(
     reservationController.getReservationById
 )
