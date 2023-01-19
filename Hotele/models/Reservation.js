@@ -40,6 +40,12 @@ class Reservation {
         return db.execute(query)
     }
 
+    static getDoneReservation() {
+        let query = `SELECT * FROM hotele.rezerwacje WHERE rezerwacje.zrealizowane is TRUE`
+
+        return db.execute(query)
+    }
+
     async save() {
 
         let query = `
