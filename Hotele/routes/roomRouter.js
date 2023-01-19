@@ -12,6 +12,12 @@ router.route('/hotel/:id').get(
     roomController.getRoomByHotel
 )
 
+router.route('/floor/:floor').get(
+    roomController.getRoomByFloor
+)
+router.route('/count/:count').get(
+    roomController.getRoomByCountOfPeople
+)
 router.route('/:id').get(
     roomController.getRoomById
 )

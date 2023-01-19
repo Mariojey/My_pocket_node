@@ -35,6 +35,30 @@ exports.getRoomByHotel = async(req, res, next) => {
     }
 }
 
+exports.getRoomByFloor = async(req, res, next) => {
+    try {
+        let floor = req.params.floor;
+        const rooms = await Room.findRoomByFloor(floor)
+
+        res.status(200).json({ rooms })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
+exports.getRoomByCountOfPeople = async(req, res, next) => {
+    try {
+        let count = req.params.count;
+        const rooms = await Room.findRoomByCountOfPeople(count)
+
+        res.status(200).json({ rooms })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createRoom = async(req, res, next) => {
     try {
         let hotel_id = req.body.hotel_id;

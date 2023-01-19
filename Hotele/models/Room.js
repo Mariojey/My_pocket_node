@@ -28,6 +28,24 @@ class Room {
         return db.execute(query)
     }
 
+    static findRoomByFloor(props) {
+        let query = `SELECT * FROM hotele.pokoje WHERE pokoje.pietro = ${props}`;
+
+        return db.execute(query)
+    }
+
+    static findRoomByCountOfPeople(props) {
+        let query = `SELECT * FROM hotele.pokoje WHERE pokoje.ludzie = ${props}`;
+
+        return db.execute(query)
+    }
+
+    static orderRoomsByCountOfPeople() {
+        let query = `SELECT * FROM hotele.pokoje ORDER BY ludzie DESC`;
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.pokoje(
