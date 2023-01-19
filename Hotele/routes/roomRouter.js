@@ -15,6 +15,9 @@ router.route('/hotel/:id').get(
 router.route('/floor/:floor').get(
     roomController.getRoomByFloor
 )
+router.route('/count').get(
+    roomController.getRoomOrderedByCountOfPeople
+)
 router.route('/count/:count').get(
     roomController.getRoomByCountOfPeople
 )

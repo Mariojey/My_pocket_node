@@ -59,6 +59,17 @@ exports.getRoomByCountOfPeople = async(req, res, next) => {
     }
 }
 
+exports.getRoomOrderedByCountOfPeople = async(req, res, next) => {
+    try {
+        const rooms = await Room.orderRoomsByCountOfPeople()
+
+        res.status(200).json({ rooms })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createRoom = async(req, res, next) => {
     try {
         let hotel_id = req.body.hotel_id;
