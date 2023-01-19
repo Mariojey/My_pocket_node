@@ -23,6 +23,18 @@ exports.getHotelById = async(req, res, next) => {
     }
 }
 
+exports.getHotelByCountry = async(req, res, next) => {
+    try {
+        let country_id = req.params.id
+        const hotels = await Hotel.findHotelByCountry(country_id);
+
+        res.status(200).json({ hotels })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.createHotel = async(req, res, next) => {
     try {
         let name = req.body.name;

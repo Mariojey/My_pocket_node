@@ -8,8 +8,10 @@ router.route('/').get(
     .post(
         hotelController.createHotel
     )
+router.route('/country/:id').get(
+    hotelController.getHotelByCountry
+)
 router.route('/:id').get(
     hotelController.getHotelById
 )
-
 module.exports = router

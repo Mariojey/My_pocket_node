@@ -24,6 +24,12 @@ class Hotel {
         return db.execute(query)
     }
 
+    static findHotelByCountry(props) {
+        let query = `SELECT * FROM hotele.hotele WHERE hotele.id_kraj = ${props}`
+
+        return db.execute(query)
+    }
+
     async save() {
         let query = `
         INSERT INTO hotele.hotele(
