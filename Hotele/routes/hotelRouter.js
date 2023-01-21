@@ -3,11 +3,15 @@ const router = express.Router();
 const hotelController = require('../controllers/hotelController')
 
 router.route('/').get(
-        hotelController.getAllHotels
+        hotelController.getAllHotelsExtended
     )
     .post(
         hotelController.createHotel
     )
+
+router.route('/all').get(
+    hotelController.getAllHotels
+)
 router.route('/country/:id').get(
     hotelController.getHotelByCountry
 )

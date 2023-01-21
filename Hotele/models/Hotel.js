@@ -18,6 +18,25 @@ class Hotel {
         return db.execute(query)
     }
 
+    static findAllExtended() {
+        let query = `SELECT 
+        hotele.nazwa, 
+        kraje.nazwa_kraju, 
+        miasta.nazwa_miasta, 
+        hotele.adres, 
+        hotele.gwiazdki, 
+        hotele.telefon, 
+        hotele.email, 
+        hotele.www 
+        FROM hotele.hotele 
+        JOIN kraje ON hotele.id_kraj = kraje.id_kraju 
+        JOIN miasta ON hotele.id_miasto = miasta.id_miasta`;
+
+
+        return db.execute(query)
+
+    }
+
     static findHotelById(props) {
         let query = `SELECT * FROM hotele.hotele WHERE hotele.id_hotel = ${props}`
 
@@ -47,6 +66,7 @@ class Hotel {
 
         return db.execute(query)
     }
+
 
     async save() {
         let query = `
