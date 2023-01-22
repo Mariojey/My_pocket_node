@@ -3,10 +3,15 @@ const router = express.Router();
 const parkingController = require('../controllers/parkingController')
 
 router.route('/').get(
-    parkingController.getAllParkings
+    parkingController.getAllParkingsExtended
 ).post(
     parkingController.createParking
 )
+
+router.route('/all').get(
+    parkingController.getAllParkings
+)
+
 router.route('/hotel/:id').get(
     parkingController.getParkingByHotel
 )

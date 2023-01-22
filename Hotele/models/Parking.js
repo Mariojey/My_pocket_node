@@ -12,6 +12,16 @@ class Parking {
         return db.execute(query)
     }
 
+    static findAllExtended() {
+
+        let query = `SELECT 
+        hotele.nazwa, 
+        parking.numer
+        FROM parking JOIN hotele ON parking.id_hotel = hotele.id_hotel`;
+
+        return db.execute(query)
+    }
+
     static findParkingById(props) {
         let query = `SELECT * FROM hotele.parking WHERE parking.id_parking = ${props}`
 

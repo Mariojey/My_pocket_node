@@ -11,6 +11,17 @@ exports.getAllParkings = async(req, res, next) => {
     }
 }
 
+exports.getAllParkingsExtended = async(req, res, next) => {
+    try {
+        const parkings = await Parking.findAllExtended();
+
+        res.status(200).json({ parkings })
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.getParkingById = async(req, res, next) => {
     try {
         let id = req.params.id;
