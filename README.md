@@ -87,3 +87,23 @@ If you want to run this app and modify it you should run this with nodemon. Then
 
 |Clients| Type |
 |-------|------|
+|/|GET|
+|/|POST|
+|/all|GET|
+|/country/:id|GET|
+|/city/:id|GET|
+|/:id|GET|
+
+|Country/City|Type|
+|------------|----|
+|/|GET|
+|/|POST|
+|/:id|GET|
+
+|Parkings|Type|
+|--------|----|
+|/|GET|
+|/|POST|
+|/all|GET|
+|/hotel/:id|GET|
+|/:id|GET|
