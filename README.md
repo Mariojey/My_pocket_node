@@ -2,7 +2,7 @@
 ---
 ### This is a simple prototype of system to management hotels.
 
-Props:
+Technologies:
 - Backend
   - Node.js
   - Express.js
@@ -17,9 +17,9 @@ Props:
 - Security
   - bcrypt (using to hash password)
 
-First of all, you must have a database server, for developing you shall using localhost. On this server will be running database.
+First of all, you must have a database server, for developing probably you shall using localhost. On this server will be running database.
 
-Second you must install all dependencies after uzip source code folder
+Second you must install all dependencies after uzip source code folder, in project directory run console and wrte this command:
 ```
 npm install
 ```
@@ -46,7 +46,7 @@ You can run a backend starting **[index.js](./Hotele/index.js)** file using comm
 ```
 As you can see for running is used *npm* which has been installed automatically with node.js
 
-If you want to run this app and modify it you should run this with nodemon. Then any changes which you provide will not interrupt the operation of the application, and process will be restarting automatically. To start backend with nodemon ypou should use this commend in your console:
+If you want to run this app and modify it you should run this with *nodemon*. Then any changes which you provide will not interrupt the operation of the application, and process will be restarting automatically on save (Ctrl+S). To start backend with nodemon you should use this command in your console:
 
 ```
     npm run devWatch
@@ -73,7 +73,7 @@ If you want to run this app and modify it you should run this with nodemon. Then
 
 ## URLs to fetching in frontend
 
-|Hotels   | Type|
+|/hotels   | Type|
 |---------|-----|
 |/|GET|
 |/|POST|
@@ -85,7 +85,7 @@ If you want to run this app and modify it you should run this with nodemon. Then
 |/:id|GET|
 
 
-|Clients| Type |
+|/clients| Type |
 |-------|------|
 |/|GET|
 |/|POST|
@@ -94,13 +94,13 @@ If you want to run this app and modify it you should run this with nodemon. Then
 |/city/:id|GET|
 |/:id|GET|
 
-|Country/City|Type|
+|/country /city|Type|
 |------------|----|
 |/|GET|
 |/|POST|
 |/:id|GET|
 
-|Parkings|Type|
+|/parkings|Type|
 |--------|----|
 |/|GET|
 |/|POST|
@@ -108,7 +108,7 @@ If you want to run this app and modify it you should run this with nodemon. Then
 |/hotel/:id|GET|
 |/:id|GET|
 
-|Rooms|Type|
+|/rooms|Type|
 |-----|----|
 |/|GET|
 |/|POST|
@@ -119,7 +119,7 @@ If you want to run this app and modify it you should run this with nodemon. Then
 |/count/:count|GET|
 |/:id|GET|
 
-|Reservations|Type|
+|/reservations|Type|
 |------------|------|
 |/|GET|
 |/|POST|
