@@ -17,6 +17,22 @@ class Client {
         return db.execute(query)
     }
 
+    static findAllExtended() {
+        let query = ` SELECT 
+        klienci.imie, 
+        klienci.nazwisko, 
+        kraje.nazwa_kraju, 
+        miasta.nazwa_miasta, 
+        klienci.adres, 
+        klienci.licznik, 
+        klienci.nr_dokumentacji 
+        FROM klienci 
+        JOIN kraje ON klienci.id_kraju = kraje.id_kraju 
+        JOIN miasta ON klienci.id_miasto = miasta.id_miasta `;
+
+        return db.execute(query)
+    }
+
     static findClientById(props) {
         let query = `SELECT * FROM hotele.klienci WHERE klienci.id_klient = ${props}`;
 

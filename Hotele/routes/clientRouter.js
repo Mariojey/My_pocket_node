@@ -3,11 +3,13 @@ const router = express.Router();
 const clientController = require('../controllers/clientController')
 
 router.route('/').get(
-    clientController.getAllClients
+    clientController.getAllClientsExtended
 ).post(
     clientController.createClient
 )
-
+router.route('/all').get(
+    clientController.getAllClients
+)
 router.route('/country/:id').get(
     clientController.getClientByCountry
 )
