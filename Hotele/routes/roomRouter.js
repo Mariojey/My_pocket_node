@@ -3,11 +3,13 @@ const router = express.Router();
 const roomController = require('../controllers/roomController');
 
 router.route('/').get(
-    roomController.getAllRooms
+    roomController.getAllRoomsExtended
 ).post(
     roomController.createRoom
 )
-
+router.route('/all').get(
+    roomController.getAllRooms
+)
 router.route('/hotel/:id').get(
     roomController.getRoomByHotel
 )

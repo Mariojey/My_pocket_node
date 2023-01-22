@@ -11,6 +11,17 @@ exports.getAllRooms = async(req, res, next) => {
     }
 }
 
+exports.getAllRoomsExtended = async(req, res, next) => {
+    try {
+        const rooms = await Room.findAllExtended();
+
+        res.status(200).json({ rooms })
+    } catch (erorr) {
+        console.log(error);
+        next(error)
+    }
+}
+
 exports.getRoomById = async(req, res, next) => {
     try {
         let id = req.params.id

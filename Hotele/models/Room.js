@@ -15,6 +15,17 @@ class Room {
         return db.execute(query)
     }
 
+    static findAllExtended() {
+        let query = `SELECT 
+        hotele.nazwa AS hotel, 
+        pokoje.nr_pokoju, 
+        pokoje.pietro, 
+        pokoje.ludzie 
+        FROM pokoje JOIN hotele ON pokoje.id_hotel = hotele.id_hotel`;
+
+        return db.execute(query)
+    }
+
     static findRoomById(props) {
 
         let query = `SELECT * FROM hotele.pokoje WHERE pokoje.id_pokoju = ${props}`;
