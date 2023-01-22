@@ -23,7 +23,7 @@ router.route('/city/:id').get(
 router.route('/stars').get(
     hotelController.getHotelSortedByStars
 )
-router.route('/stars/:id').get(
+router.route('/stars/:count').get(
     hotelController.getHotelByStars
 )
 

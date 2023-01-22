@@ -60,7 +60,7 @@ exports.getHotelByCity = async(req, res, next) => {
 
 exports.getHotelByStars = async(req, res, next) => {
     try {
-        let stars = req.params.id
+        let stars = req.params.count
         const hotels = await Hotel.findHotelByStars(stars)
 
         res.status(200).json({ hotels })

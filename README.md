@@ -70,3 +70,20 @@ If you want to run this app and modify it you should run this with nodemon. Then
 |/parkings|*[parkingRouter](./Hotele/routes/parkingRouter.js)*|
 |/rooms|*[roomRouter](./Hotele/routes/roomRouter.js)*|
 |/reservations|*[reservationRouter](./Hotele/routes/reservationRouter.js)*|
+
+## URLs to fetching in frontend
+
+|Hotels   | Type|
+|---------|-----|
+|/|GET|
+|/|POST|
+|/all|GET|
+|/country/:id|GET|
+|/city/:id|GET|
+|/stars|GET|
+|/stars/:count|GET|
+|/:id|GET|
+
+
+|Clients| Type |
+|-------|------|
