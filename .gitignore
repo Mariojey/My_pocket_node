@@ -12,3 +12,6 @@ Users/node_modules
 Users/.env
 Hotele/node_modules
 Hotele/.env
+hotele-frontend/node_modules
+hotele-frontend/build
+hotele-frontend/.gitignore
