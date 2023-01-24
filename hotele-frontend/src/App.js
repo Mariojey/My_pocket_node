@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function App() {
+
+  const navigation = useNavigate();
+
     return (
       <>
         <Routes>
-          <Route path='/hotels'/>
+          <Route path='/'/>
           <Route path='/clients'/>
           <Route path='/countries'/>
           <Route path='/cities'/>

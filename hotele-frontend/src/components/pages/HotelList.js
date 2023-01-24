@@ -8,6 +8,24 @@ function HotelList(props){
 
     const [hotelList, setHotelList] = useState([]);
 
+    useEffect(() => {
+
+        fetch(`127.0.0.1:3000/hotels`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            if(res.status === 'OK') {
+                setHotelList(res.polls)
+            }
+        })
+    })    
+
+
     if (hotelList.length === 0) {
         return(
             <>
