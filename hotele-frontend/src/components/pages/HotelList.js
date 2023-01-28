@@ -3,7 +3,7 @@ import styles from './HotelList.module.css'
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function HotelList(props){
+export default function HotelList(props){
     const navigation = useNavigate();
 
     const [hotelList, setHotelList] = useState([]);

@@ -23,13 +23,13 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
     //listening
-app.use('/hotels', hotelRouter)
-app.use('/clients', clientRouter)
-app.use('/countries', countryRouter)
-app.use('/cities', cityRouter)
-app.use('/parkings', parkingRouter)
-app.use('/rooms', roomRouter)
-app.use('/reservations', reservationRouter)
+app.use('/api/hotels', hotelRouter)
+app.use('/api/clients', clientRouter)
+app.use('/api/countries', countryRouter)
+app.use('/api/cities', cityRouter)
+app.use('/api/parkings', parkingRouter)
+app.use('/api/rooms', roomRouter)
+app.use('/api/reservations', reservationRouter)
 
 
 app.use((err, req, res, next) => {
