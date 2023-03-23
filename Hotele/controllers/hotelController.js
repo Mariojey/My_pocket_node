@@ -15,7 +15,7 @@ exports.getAllHotelsExtended = async(req, res, next) => {
     try {
         const hotels = await Hotel.findAllExtended();
 
-        res.status(200).json({ hotels })
+        res.status(200).json({ status: 'OK', hotels })
     } catch (error) {
         console.log(error);
         next(error)
